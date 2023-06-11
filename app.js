@@ -1,14 +1,8 @@
 import * as THREE from 'three';
-// import { GLTFLoader } from 'GLTFLoader';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
-// const canvas = document.getElementById('canvas');
-// canvas.width = 600;
-// canvas.height = 600;
 
 // Scene
 let scene = new THREE.Scene();
-scene.backgorund = new THREE.Color('#ccc');
 
 // Camera
 let camera = new THREE.PerspectiveCamera(
@@ -18,27 +12,49 @@ let camera = new THREE.PerspectiveCamera(
   1000,
 );
 
-camera.position.set(0, 0, 5);
+camera.position.set(0, 0, 4);
 
 // Renderer
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({
+  canvas: document.getElementById('canvas'),
+  antialias: true,
+});
 renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+// renderer.setPixelRatio(window.devicePixelRatio);
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+let light = new THREE.DirectionalLight(0xffffff,10);
+scene.add(light);
+scene.background = new THREE.Color('white');
 
-camera.position.z = 5;
+// Cube 그리기
+// const geometry = new THREE.BoxGeometry( 1, 1.5, 1 );
+// const material = new THREE.MeshBasicMaterial( { color: 0xcccccc } );
+// const cube = new THREE.Mesh( geometry, material );
+// scene.add( cube );
 
-function animate() {
-	requestAnimationFrame( animate );
+// function animate() {
+// 	requestAnimationFrame( animate );
 
-	cube.rotation.x += 0.01;
-	cube.rotation.y += 0.01;
+// 	cube.rotation.x += 0.01;
+// 	cube.rotation.y += 0.01;
 
-	renderer.render( scene, camera );
-}
+// 	renderer.render( scene, camera );
+// }
 
-animate();
+// animate();
+
+// 3D 개체 불러오기
+let loader = new GLTFLoader();
+loader.load('./sources/models/shiba/scene.gltf', function (gltf) {
+  scene.add(gltf.scene);
+  // renderer.render(scene, camera);
+
+  // 움직이는 애니메이션
+  function animate(){
+    requestAnimationFrame(animate);
+
+    gltf.scene.rotation.y += 0.010;
+    renderer.render(scene,camera);  
+  }
+  animate();
+});
