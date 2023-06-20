@@ -1,0 +1,11 @@
+Model Information:
+* title:	Perry_HP
+* source:	https://sketchfab.com/3d-models/perry-hp-f9e58683661040beba97371bdb90d3b2
+* author:	Dumfor (https://sketchfab.com/dumfor)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Perry_HP" (https://sketchfab.com/3d-models/perry-hp-f9e58683661040beba97371bdb90d3b2) by Dumfor (https://sketchfab.com/dumfor) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
