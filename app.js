@@ -1,5 +1,5 @@
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 // Scene
 let scene = new THREE.Scene();
@@ -9,22 +9,22 @@ let camera = new THREE.PerspectiveCamera(
   45,
   window.innerWidth / window.innerHeight,
   0.1,
-  1000,
+  1000
 );
 
 camera.position.set(0, 0, 4);
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
-  canvas: document.getElementById('canvas'),
+  canvas: document.getElementById("canvas"),
   antialias: true,
 });
-renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.setSize(window.innerWidth, window.innerHeight);
 // renderer.setPixelRatio(window.devicePixelRatio);
 
-let light = new THREE.DirectionalLight(0xffffff,10);
+let light = new THREE.DirectionalLight(0xffffff, 10);
 scene.add(light);
-scene.background = new THREE.Color('white');
+scene.background = new THREE.Color("white");
 
 // Cube 그리기
 // const geometry = new THREE.BoxGeometry( 1, 1.5, 1 );
@@ -45,16 +45,16 @@ scene.background = new THREE.Color('white');
 
 // 3D 개체 불러오기
 let loader = new GLTFLoader();
-loader.load('./sources/models/shiba/scene.gltf', function (gltf) {
+loader.load("./sources/models/shiba/scene.gltf", function (gltf) {
   scene.add(gltf.scene);
   // renderer.render(scene, camera);
 
   // 움직이는 애니메이션
-  function animate(){
+  function animate() {
     requestAnimationFrame(animate);
 
-    gltf.scene.rotation.y += 0.010;
-    renderer.render(scene,camera);  
+    gltf.scene.rotation.y += 0.01;
+    renderer.render(scene, camera);
   }
   animate();
 });
