@@ -1,34 +1,35 @@
-import BABYLON from "@babylonjs/core";
+import {
+  Scene,
+  Engine,
+  FreeCamera,
+  Vector3,
+  HemisphericLight,
+  MeshBuilder,
+} from "@babylonjs/core";
 
 var createScene = function () {
   // This creates a basic Babylon Scene object (non-mesh)
-  var scene = new BABYLON.Scene(engine);
+  var engine = Engine();
+  var scene = new Scene(engine);
+  console.log(scene);
 
   // This creates and positions a free camera (non-mesh)
-  var camera = new BABYLON.FreeCamera(
-    "camera1",
-    new BABYLON.Vector3(0, 5, -10),
-    scene
-  );
+  var camera = new FreeCamera("camera1", new Vector3(0, 5, -10), scene);
 
   // This targets the camera to scene origin
-  camera.setTarget(BABYLON.Vector3.Zero());
+  camera.setTarget(Vector3.Zero());
 
   // This attaches the camera to the canvas
   camera.attachControl(canvas, true);
 
   // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-  var light = new BABYLON.HemisphericLight(
-    "light",
-    new BABYLON.Vector3(0, 1, 0),
-    scene
-  );
+  var light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
 
   // Default intensity is 1. Let's dim the light a small amount
   light.intensity = 0.7;
 
   // Our built-in 'ground' shape.
-  var ground = BABYLON.MeshBuilder.CreateGround(
+  var ground = MeshBuilder.CreateGround(
     "ground",
     { width: 6, height: 6 },
     scene
@@ -36,7 +37,4 @@ var createScene = function () {
 
   return scene;
 };
-
-createScene();
-
 export { createScene };

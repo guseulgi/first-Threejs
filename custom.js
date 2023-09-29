@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { DragControls } from "three/addons/controls/DragControls.js";
+import { createScene } from "./babylonjs";
 
 // 씬
 let scene = new THREE.Scene();
@@ -101,3 +101,5 @@ birdLoader.load("./sources/models/bird_orange/scene.gltf", function (gltf) {
 //   } );
 //   renderer.render(scene, camera);
 // }
+
+createScene();
